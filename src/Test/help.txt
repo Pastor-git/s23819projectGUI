@@ -7,3 +7,6 @@ import javax.swing.UIManager;
         }
 setBackground(), setForeground(), setOpaque() i
 Layout Managers
+
+FX 3D
+compose multiplatform - z adoridem
