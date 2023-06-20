@@ -1,6 +1,7 @@
-package components;
+package components.gameComponents;
 
-import javax.accessibility.Accessible;
+import components.gameComponents.BoardPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,6 +12,7 @@ public class MainPanel extends JPanel {
         this.setSize(400,800);
         this.setBackground(Color.CYAN);
         this.setVisible(true);
+        this.setLayout(new GridLayout(3, 3));
         BoardPanel panel1 = new BoardPanel();
         panel1.setBackground(Color.GREEN);
         this.add(panel1);

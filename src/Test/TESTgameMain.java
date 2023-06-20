@@ -28,6 +28,8 @@ public class TESTgameMain extends JFrame {
         initializeButtons();
 
         setVisible(true);
+
+
     }
 
     private void initializeBoard() {
@@ -149,4 +151,15 @@ public class TESTgameMain extends JFrame {
             new TESTgameMain();
         }
     }
+
+
+//    TEST
+//    public printBoard(){
+//        for (int i =0; i<3;i++) {
+//            for (int j =0; j<3;j++) {
+//                System.out.println(board[i][j]);
+//            }
+//        }
+//    }
+
 }

@@ -1,9 +1,7 @@
 package main;
 
-import components.MainFrame;
-import components.MainPanel;
-import java.awt.*;
-import java.awt.event.*;
+import components.gameComponents.MainFrame;
+
 import javax.swing.*;
 
 

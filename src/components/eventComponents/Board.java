@@ -1,4 +1,4 @@
-package components;
+package components.eventComponents;
 
 public class Board {
 //COMPONENT SKŁADOWY GAMECOTROLER'A

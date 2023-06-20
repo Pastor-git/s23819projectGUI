@@ -1,7 +1,11 @@
-package components;
+package components.gameComponents;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class TestButton extends JButton {
 
@@ -23,4 +27,6 @@ public class TestButton extends JButton {
     public void setNumber(Integer number) {
         this.number = number;
     }
+
+
 }

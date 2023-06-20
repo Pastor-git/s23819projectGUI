@@ -1,4 +1,4 @@
-package components;
+package components.eventComponents;
 
 import javax.swing.*;
 

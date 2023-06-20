@@ -1,0 +1,9 @@
+Look and Feel
+import javax.swing.UIManager;
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+setBackground(), setForeground(), setOpaque() i
+Layout Managers
