@@ -1,6 +1,6 @@
 package Interface;
 
-public interface WinConditions {
+public interface WinLoseConditions {
 
     public default boolean win(){
         return false;
