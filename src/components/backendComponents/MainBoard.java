@@ -1,12 +1,13 @@
 package components.backendComponents;
 
-public class MianBoard extends Board {
+public class MainBoard extends Board {
     Board[][]mainBoard;
 
-    public MianBoard() {
+    public MainBoard() {
+        super();
     }
 
-    public MianBoard(int[][] board, Tile[][] tileBoard, Board[][] mainBoard) {
+    public MainBoard(int[][] board, Tile[][] tileBoard, Board[][] mainBoard) {
         super(board, tileBoard);
         this.mainBoard = mainBoard;
     }

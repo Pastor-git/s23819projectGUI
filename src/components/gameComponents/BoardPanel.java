@@ -9,43 +9,49 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BoardPanel extends JPanel implements ActionListener {
+public class BoardPanel extends JPanel{
     Board board;
     public BoardPanel() {
-//        BOARD IMPLEMENTATION
-        this.board = new Board();
-        int[][] tab = new int[3][3];
-//        for(int i = 0; i < 3; i++) {
-//           for(inr j = 0; j < 3; j++) {
-//
-//           }
-//        }
-        for(int[] element : tab){
-            for(int i : element) {
-                i = 1;
-            }
-        }
-        board.setIntBoard(tab);
-        Tile[][]tab2 = new Tile[3][3];
+//        BUILD-UP
+        this.setVisible(true);
+        this.setSize(400,600);
+        this.setBackground(Color.GREEN);
+        this.setLayout(new GridLayout(3, 3));
 
-        for(Tile[] element : tab2){
-            for(Tile tile : element) {
-                tile = new Tile();
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+//    BUILD-UP
+    public void buildTileTab(Board board) {
+        this.board = board;
+        Tile[][] tab = new Tile[3][3];
+        for (int k = 0; k < tab.length; k++) {
+            for (int l = 0; l < tab[k].length; l++) {
+                Tile tile = new Tile();
                 tile.setText("1");
-                tile.addActionListener(this);
                 tile.setBackground(Color.BLACK);
+                tab[k][l] = tile;
+                tile.setVisible(true);
                 this.add(tile);
             }
         }
-        board.setTileBoard(tab2);
-//        PANEL BUILDU-UP
-        this.setSize(400,600);
-        this.setBackground(Color.GREEN);
-        this.setVisible(true);
+        board.setTileBoard(tab);
+    }
+    public void buildIntTab(Board board) {
+        this.board = board;
+        int[][] tab = new int[3][3];
+        for (int[] element : tab) {
+            for (int k = 0; k < element.length; k++) {
+                element[k] = 1;
+            }
+        }
+        board.setIntBoard(tab);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println("clicked");
-    }
 }

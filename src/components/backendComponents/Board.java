@@ -5,6 +5,7 @@ public class Board {
     int[][] intBoard;
     Tile[][]tileBoard;
     public Board() {
+        super();
     }
     public Board(int[][] intBoard, Tile[][] tileBoard) {
         this.intBoard = intBoard;
