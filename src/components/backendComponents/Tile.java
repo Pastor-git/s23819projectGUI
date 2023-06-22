@@ -1,8 +1,11 @@
 package components.backendComponents;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLOutput;
 
-public class Tile {
+public class Tile implements ActionListener {
     boolean pressed;
     JButton button;
     int x;
@@ -15,6 +18,7 @@ public class Tile {
 
     public Tile(JButton button, int x, int y) {
         this.pressed = false;
+        button.addActionListener(this);
         this.button = button;
         this.x = x;
         this.y = y;
@@ -67,5 +71,10 @@ public class Tile {
 
     public void setButton(JButton button) {
         this.button = button;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("x:"+this.x + "y:" + this.y);
     }
 }

@@ -1,22 +1,29 @@
 package components.backendComponents;
 
-public class MainBoard extends Board {
-    Board[][]mainBoard;
-
+public class MainBoard {
+    Board[][] mainBoardTab;
+    int[][]mainIntBoard;
     public MainBoard() {
         super();
     }
 
-    public MainBoard(int[][] board, Tile[][] tileBoard, Board[][] mainBoard) {
-        super(board, tileBoard);
-        this.mainBoard = mainBoard;
+    public MainBoard(Board[][] mainBoard) {
+        this.mainBoardTab = mainBoard;
     }
 
-    public Board[][] getMainBoard() {
-        return mainBoard;
+    public Board[][] getMainBoardTab() {
+        return mainBoardTab;
     }
 
-    public void setMainBoard(Board[][] mainBoard) {
-        this.mainBoard = mainBoard;
+    public void setMainBoardTab(Board[][] mainBoardTab) {
+        this.mainBoardTab = mainBoardTab;
+    }
+
+    public int[][] getMainIntBoard() {
+        return mainIntBoard;
+    }
+
+    public void setMainIntBoard(int[][] mainIntBoard) {
+        this.mainIntBoard = mainIntBoard;
     }
 }
