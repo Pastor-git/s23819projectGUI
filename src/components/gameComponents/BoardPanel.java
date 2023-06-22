@@ -33,20 +33,26 @@ public class BoardPanel extends JPanel{
 //    BUILD-UP
     public void buildTileTab(Board board) {
         this.board = board;
+//        INICJALIZACJA TABLICY TILE
         Tile[][] tab = new Tile[3][3];
-        for (int k = 0; k < tab.length; k++) {
+        for (int k = tab.length-1; k >= 0; k--) {
             for (int l = 0; l < tab[k].length; l++) {
-                Tile tile = new Tile(new JButton(),k,l);
+//                POPRAWNE WSPÓŁRZĘDNE X I Y DLA CZŁOWIEKA k->l
+                Tile tile = new Tile(new JButton(),l,k);
                 tile.getButton().setText("1");
                 tile.getButton().setBackground(Color.BLACK);
                 tile.getButton().setIcon(Const.BASIC);
-                tab[k][l] = tile;
+//                POPRAWNE WSPÓŁRZĘDNE X I Y DLA CZŁOWIEKA k->l
+                tab[l][k] = tile;
                 tile.getButton().setVisible(true);
                 this.add(tile.getButton());
             }
         }
+//        WSTAWIENIE TABLICY TILE
         board.setTileBoard(tab);
     }
+
+//    DOCELOWO DRUGI ARGUMENT TO ENUM LOAD/SAVE
     public void buildIntTab(Board board) {
         this.board = board;
         int[][] tab = new int[3][3];

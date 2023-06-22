@@ -41,8 +41,8 @@ public class Tile implements ActionListener {
             System.out.println("przycisk już jest niekatywny:"+this.x+this.y);
         } else {
             //        TEST BLOCK
-            System.out.println("x:"+this.x + "y:" + this.y);
-            System.out.println("bigX:"+this.bigX + "bigY:" + this.bigY);
+            System.out.println("Tile speaks: "+"x:"+this.x + "y:" + this.y);
+            System.out.println("Tile speaks: "+"bigX:"+this.bigX + "bigY:" + this.bigY);
             this.gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
 //        GAME BLOCK
             this.gameControler.move();
