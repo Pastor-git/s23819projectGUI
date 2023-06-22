@@ -3,6 +3,7 @@ package components.gameComponents;
 import components.backendComponents.Board;
 import components.backendComponents.MainBoard;
 import components.eventComponents.GameControler;
+import components.eventComponents.State;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,21 +25,24 @@ public class MainPanel extends JPanel implements ActionListener {
         Board[][] mainBoardTab = new Board[3][3];
         mainBoard.setMainBoardTab(mainBoardTab);
 //        BUILD-UP
+       this.setVisible(true);
+       this.gameControler = new GameControler(new State(), this.mainBoard);
         for(int i = 0; i < 3; i++) {
            for(int j = 0; j < 3; j++) {
                BoardPanel panel = new BoardPanel();
                mainBoard.getMainBoardTab()[i][j] = panel.getBoard();
+//          ACTIONLISTENER GAMECONTORLER ADITION
+               for (int k = 0; k < panel.getBoard().getTileBoard().length; k++) {
+                   for (int l = 0; l < panel.getBoard().getTileBoard().length; l++) {
+                       panel.getBoard().getTileBoard()[k][l].setGameControler(this.gameControler);
+                   }
+               }
                this.add(panel);
            }
         }
 //        end of loop
-       for(int i = 0; i < 3; i++) {
-           for (int j = 0; j < 3; j++) {
-//               System.out.println(this.getMainBoard()[i][j]);
-           }
-       }
-//        end of loop
-       this.setVisible(true);
+
+
     }
 //    END OF CONTRUCTOR
     @Override

@@ -1,5 +1,7 @@
 package components.backendComponents;
 
+import components.eventComponents.GameControler;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +14,8 @@ public class Tile implements ActionListener {
     int y;
     int bigX;
     int bigY;
+
+    GameControler gameControler;
     public Tile() {
         super();
     }
@@ -73,8 +77,21 @@ public class Tile implements ActionListener {
         this.button = button;
     }
 
+    public GameControler getGameControler() {
+        return gameControler;
+    }
+
+    public void setGameControler(GameControler gameControler) {
+        this.gameControler = gameControler;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("x:"+this.x + "y:" + this.y);
+        System.out.println("bigX:"+this.bigX + "bigY:" + this.bigY);
+        this.gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
+    }
+    public void returnGameControler(GameControler gameControler) {
+        gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
     }
 }

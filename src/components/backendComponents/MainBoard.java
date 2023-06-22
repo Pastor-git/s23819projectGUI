@@ -26,4 +26,5 @@ public class MainBoard {
     public void setMainIntBoard(int[][] mainIntBoard) {
         this.mainIntBoard = mainIntBoard;
     }
+
 }
