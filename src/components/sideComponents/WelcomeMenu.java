@@ -58,10 +58,10 @@ public class WelcomeMenu extends JFrame implements ActionListener {
                 this.testGame(action_title);
                 break;
             case "SAVE":
-                System.out.println("SAVE pressed");
+                this.saveGame(action_title);
                 break;
             case "CLOSE":
-                System.out.println("CLOSE pressed");
+                this.closeGame(action_title);
                 break;
             default:
                 System.out.println("Menu nie działa poprawnie");
@@ -91,4 +91,11 @@ public class WelcomeMenu extends JFrame implements ActionListener {
                 MainFrame mainFrame = new MainFrame(action_title);}
         });
     }
+    public void saveGame(String action_title){
+        System.out.println("SAVE game clicked");
+    }
+    public void closeGame(String action_title){
+        System.out.println("CLOSE game clicked");
+    }
+
 }

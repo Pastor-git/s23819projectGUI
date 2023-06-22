@@ -22,6 +22,9 @@ public class Main {
             public void run() {
                 WelcomeMenu welcomeMenu = new WelcomeMenu(label);
 //                MainFrame mainFrame = new MainFrame(label);
+//                1. tworzymy też MAIN fraim którą wstrzykujemy do WELCOM MENNU
+//                2. MAIN FRAME ma metody przekazywane do listienra w welcom screen inicjalizujace MAIN PANEL z grą
+
             }
         }
         );
