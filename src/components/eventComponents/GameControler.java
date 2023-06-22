@@ -37,4 +37,9 @@ public class GameControler {
         System.out.println("x:"+x + "y:" + y);
         System.out.println("bigX:"+bigX + "bigY:" + bigY);
     }
+
+    public void move(){
+        System.out.println("moved");
+    }
+
 }

@@ -1,5 +1,6 @@
 package components.backendComponents;
 
+import components.Const;
 import components.eventComponents.GameControler;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.sql.SQLOutput;
 
 public class Tile implements ActionListener {
     boolean pressed;
+    boolean active;
     JButton button;
     int x;
     int y;
@@ -22,12 +24,40 @@ public class Tile implements ActionListener {
 
     public Tile(JButton button, int x, int y) {
         this.pressed = false;
+        this.active = true;
         button.addActionListener(this);
         this.button = button;
         this.x = x;
         this.y = y;
     }
 
+//REAL ACTION CODE
+    @Override
+    public void actionPerformed(ActionEvent e) {
+//        INITIALIZATION CONDIDION
+        if (this.pressed==true) {
+            System.out.println("przycisk już został wciśnięty:"+this.x+this.y);
+        } else { if(this.active==false) {
+            System.out.println("przycisk już jest niekatywny:"+this.x+this.y);
+        } else {
+            //        TEST BLOCK
+            System.out.println("x:"+this.x + "y:" + this.y);
+            System.out.println("bigX:"+this.bigX + "bigY:" + this.bigY);
+            this.gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
+//        GAME BLOCK
+            this.gameControler.move();
+            this.getButton().setIcon(Const.BASIC2);
+        }
+        }
+    }
+//    END OF ACTION LISTINER
+
+    public void returnGameControler(GameControler gameControler) {
+        gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
+    }
+
+
+//BOILERPLATE
     public int getX() {
         return x;
     }
@@ -35,7 +65,6 @@ public class Tile implements ActionListener {
     public void setX(int x) {
         this.x = x;
     }
-
 
     public int getY() {
         return y;
@@ -69,6 +98,14 @@ public class Tile implements ActionListener {
         this.pressed = pressed;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public JButton getButton() {
         return button;
     }
@@ -85,13 +122,4 @@ public class Tile implements ActionListener {
         this.gameControler = gameControler;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println("x:"+this.x + "y:" + this.y);
-        System.out.println("bigX:"+this.bigX + "bigY:" + this.bigY);
-        this.gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
-    }
-    public void returnGameControler(GameControler gameControler) {
-        gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
-    }
 }

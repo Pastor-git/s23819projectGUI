@@ -1,6 +1,7 @@
 package components.gameComponents;
 
 import Test.TestButton;
+import components.Const;
 import components.backendComponents.Board;
 import components.backendComponents.Tile;
 
@@ -38,6 +39,7 @@ public class BoardPanel extends JPanel{
                 Tile tile = new Tile(new JButton(),k,l);
                 tile.getButton().setText("1");
                 tile.getButton().setBackground(Color.BLACK);
+                tile.getButton().setIcon(Const.BASIC);
                 tab[k][l] = tile;
                 tile.getButton().setVisible(true);
                 this.add(tile.getButton());
