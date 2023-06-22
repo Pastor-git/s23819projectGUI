@@ -17,7 +17,9 @@ public class BoardPanel extends JPanel{
         this.setSize(400,600);
         this.setBackground(Color.GREEN);
         this.setLayout(new GridLayout(3, 3));
-
+        setBoard(new Board());
+        this.buildIntTab(this.board);
+        this.buildTileTab(this.board);
     }
 
     public Board getBoard() {
@@ -33,12 +35,12 @@ public class BoardPanel extends JPanel{
         Tile[][] tab = new Tile[3][3];
         for (int k = 0; k < tab.length; k++) {
             for (int l = 0; l < tab[k].length; l++) {
-                Tile tile = new Tile();
-                tile.setText("1");
-                tile.setBackground(Color.BLACK);
+                Tile tile = new Tile(new JButton(),k,l);
+                tile.getButton().setText("1");
+                tile.getButton().setBackground(Color.BLACK);
                 tab[k][l] = tile;
-                tile.setVisible(true);
-                this.add(tile);
+                tile.getButton().setVisible(true);
+                this.add(tile.getButton());
             }
         }
         board.setTileBoard(tab);

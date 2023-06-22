@@ -16,9 +16,9 @@ public class TestClass {
         frame.setLocation(400,400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         BoardPanel panel = new BoardPanel();
-        Board board = new Board();
-        panel.setBoard(board);
-        panel.buildTileTab(board);
+//        Board board = new Board();
+//        panel.setBoard(board);
+//        panel.buildTileTab(board);
         frame.add(panel);
         frame.setVisible(true);
     }

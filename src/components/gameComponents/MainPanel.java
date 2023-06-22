@@ -28,16 +28,16 @@ public class MainPanel extends JPanel implements ActionListener {
         for(int i = 0; i < 3; i++) {
            for(int j = 0; j < 3; j++) {
                BoardPanel panel = new BoardPanel();
-               Board board = new Board();
-               panel.setBoard(board);
+//               Board board = new Board();
+//               panel.setBoard(board);
                // INTTAB
-               panel.buildIntTab(board);
+//               panel.buildIntTab(board);
                // TILES
-               panel.buildTileTab(board);
+//               panel.buildTileTab(board);
 //               ACTION LISTENER
-               for (int k = 0; k < board.getTileBoard().length; k++) {
-                   for (int l = 0; l < board.getTileBoard().length; l++) {
-                       board.getTileBoard()[k][l].addActionListener(this);
+               for (int k = 0; k < panel.getBoard().getTileBoard().length; k++) {
+                   for (int l = 0; l < panel.getBoard().getTileBoard().length; l++) {
+                       panel.getBoard().getTileBoard()[k][l].getButton().addActionListener(this);
                    }
                }
                this.add(panel);

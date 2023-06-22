@@ -2,22 +2,24 @@ package components.backendComponents;
 
 import javax.swing.*;
 
-public class Tile extends JButton {
+public class Tile {
+    boolean pressed;
+    JButton button;
     int x;
     int y;
     int bigX;
     int bigY;
     public Tile() {
-
+        super();
     }
-    public Tile(int x, int y, int bigX, int bigY) {
+
+    public Tile(JButton button, int x, int y) {
+        this.pressed = false;
+        this.button = button;
         this.x = x;
         this.y = y;
-        this.bigX = bigX;
-        this.bigY = bigY;
     }
 
-    @Override
     public int getX() {
         return x;
     }
@@ -26,7 +28,7 @@ public class Tile extends JButton {
         this.x = x;
     }
 
-    @Override
+
     public int getY() {
         return y;
     }
@@ -49,5 +51,21 @@ public class Tile extends JButton {
 
     public void setBigY(int bigY) {
         this.bigY = bigY;
+    }
+
+    public boolean isPressed() {
+        return pressed;
+    }
+
+    public void setPressed(boolean pressed) {
+        this.pressed = pressed;
+    }
+
+    public JButton getButton() {
+        return button;
+    }
+
+    public void setButton(JButton button) {
+        this.button = button;
     }
 }
