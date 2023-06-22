@@ -14,7 +14,7 @@ public class MainPanel extends JPanel implements ActionListener {
 //    TU SIE DZIEJE MAGIA: KOSTRUKTR gameControler BĘDIZA MIAŁ WSTRZYKNIĄTEĄ mainBoard z MainPanel
     MainBoard mainBoard;
     GameControler gameControler;
-   public MainPanel() {
+   public MainPanel(String s) {
 //        BUILD-UP
         this.setSize(400,800);
         this.setBackground(Color.CYAN);
@@ -51,7 +51,7 @@ public class MainPanel extends JPanel implements ActionListener {
         }
 //        end of loop
 
-
+       System.out.println("jestem MainPanel: " + s);
     }
 //    END OF CONTRUCTOR
 

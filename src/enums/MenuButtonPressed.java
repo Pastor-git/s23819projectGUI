@@ -1,5 +1,5 @@
 package enums;
 
 public enum MenuButtonPressed {
-    START,LOAD
+    START,LOAD,TEST,SAVE,CLOSE
 }
