@@ -1,5 +1,5 @@
 package enums;
 
 public enum GameColors {
-    BLUE,YELLOW,RED,GREEN,BLACK
+    BLUE,YELLOW,RED,GREEN,BLACK,GRAY
 }
