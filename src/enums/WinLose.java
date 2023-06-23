@@ -1,5 +1,5 @@
 package enums;
 
 public enum WinLose {
-    WIN,LOSE
+    PLAYER1,PLAYER2,DRAW
 }

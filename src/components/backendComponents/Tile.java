@@ -1,14 +1,10 @@
 package components.backendComponents;
 
-import components.Const;
 import components.eventComponents.GameControler;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLOutput;
 
 public class Tile implements ActionListener {
     boolean pressed;
@@ -42,25 +38,20 @@ public class Tile implements ActionListener {
         } else { if(this.active==false) {
             System.out.println("przycisk już jest niekatywny:"+this.x+this.y);
         } else {
-            //        TEST BLOCK
+//        TEST BLOCK
             System.out.println("Tile speaks: "+"x:"+this.x + "y:" + this.y);
             System.out.println("Tile speaks: "+"bigX:"+this.bigX + "bigY:" + this.bigY);
             this.gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
 //        GAME BLOCK
 //            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             this.gameControler.move(this.x, this.y, this.bigX, this.bigY);
-            this.getButton().setIcon(Const.BASIC2);
-//            MACHANIZM KOLOROWANIA RAMKI PRZYCISKU
-            Color borderColor = Color.RED;
-            int borderWidth = 5;
-            Border lineBorder = BorderFactory.createLineBorder(borderColor, borderWidth);
-            this.getButton().setBorder(lineBorder);
+            System.out.println("moved");
         }
         }
     }
 //    END OF ACTION LISTINER
 
-    public void returnGameControler(GameControler gameControler) {
+    public void returnGameControlerECHO(GameControler gameControler) {
         gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
     }
 
