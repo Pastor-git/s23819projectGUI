@@ -4,6 +4,8 @@ import components.Const;
 import components.eventComponents.GameControler;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLOutput;
@@ -47,6 +49,11 @@ public class Tile implements ActionListener {
 //        GAME BLOCK
             this.gameControler.move();
             this.getButton().setIcon(Const.BASIC2);
+//            MACHANIZM KOLOROWANIA RAMKI PRZYCISKU
+            Color borderColor = Color.RED;
+            int borderWidth = 5;
+            Border lineBorder = BorderFactory.createLineBorder(borderColor, borderWidth);
+            this.getButton().setBorder(lineBorder);
         }
         }
     }

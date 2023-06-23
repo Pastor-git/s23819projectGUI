@@ -19,7 +19,9 @@ public class BoardPanel extends JPanel{
         this.setBackground(Color.GREEN);
         this.setLayout(new GridLayout(3, 3));
         setBoard(new Board());
+//        INTY ZAWSZE PIERWSZE
         this.buildIntTab(this.board);
+//        OBIEKTY ZAWSZE DRUGIE
         this.buildTileTab(this.board);
     }
 
@@ -39,8 +41,9 @@ public class BoardPanel extends JPanel{
             for (int l = 0; l < tab[k].length; l++) {
 //                POPRAWNE WSPÓŁRZĘDNE X I Y DLA CZŁOWIEKA k->l
                 Tile tile = new Tile(new JButton(),l,k);
-                tile.getButton().setText("1");
+//                tile.getButton().setText("1");
                 tile.getButton().setBackground(Color.BLACK);
+//                TUTAJ DODAĆ INSTRUKCJĘ UZALEŻNIAJACĄ POCZĄTKOWEY RODZAJ POLA ID TABLICY INTÓW
                 tile.getButton().setIcon(Const.BASIC);
 //                POPRAWNE WSPÓŁRZĘDNE X I Y DLA CZŁOWIEKA k->l
                 tab[l][k] = tile;

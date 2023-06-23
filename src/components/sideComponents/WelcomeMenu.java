@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WelcomeMenu extends JFrame implements ActionListener {
-
+//    USTAWIĆ WĄTEK JAKO ZMIENNĄ - KAŻA METODA PODMIENIA WĄTEK ZAMIAST TWORZYĆ NOWEGO
 
     public WelcomeMenu(String s) {
 //      PARAMETERS
