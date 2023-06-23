@@ -38,7 +38,8 @@ public class GameControler {
         System.out.println("bigX:"+bigX + "bigY:" + bigY);
     }
 
-    public void move(){
+    public void move(int x, int y, int bigX, int bigY){
+
         System.out.println("moved");
     }
 

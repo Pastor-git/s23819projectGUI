@@ -47,7 +47,8 @@ public class Tile implements ActionListener {
             System.out.println("Tile speaks: "+"bigX:"+this.bigX + "bigY:" + this.bigY);
             this.gameControler.testPrint(this.x, this.y, this.bigX, this.bigY);
 //        GAME BLOCK
-            this.gameControler.move();
+//            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            this.gameControler.move(this.x, this.y, this.bigX, this.bigY);
             this.getButton().setIcon(Const.BASIC2);
 //            MACHANIZM KOLOROWANIA RAMKI PRZYCISKU
             Color borderColor = Color.RED;
