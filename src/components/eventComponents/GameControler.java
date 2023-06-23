@@ -2,13 +2,17 @@ package components.eventComponents;
 
 import Interface.MoveInterface;
 import components.Const;
+import components.backendComponents.Board;
 import components.backendComponents.MainBoard;
 import components.backendComponents.Tile;
+import components.sideComponents.WelcomeMenu;
 import enums.GameColors;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameControler implements MoveInterface {
     //    GABINET CIENI ROZGRYFKI - BACKEND ODPOWADAJACY ZA SPRAWDZANIE WSZSYKICH CZYNNIKÓW GRY NA PODSTAWIE STATE I INNYCH KOMPONENTÓ
@@ -35,10 +39,15 @@ public class GameControler implements MoveInterface {
                 setButtonPressed(getDobryTile(x, y, bigX, bigY));
                 setColorBorder(getDobryPrzycisk(x, y, bigX, bigY), GameColors.BLUE.name());
 //                  int[][]
-                printIntTab(getSmallIntTab(bigX,bigY));
                 setSmallIntTabCell(x,y,bigX,bigY,player_number);
                 printIntTab(getSmallIntTab(bigX,bigY));
-//                test for bigIntTab
+                int end1 = state.resultIntTab(getSmallIntTab(bigX,bigY));
+                System.out.println("result: " + end1);
+                if (end1!=0) {
+                    setTileBord(getGoodTileTab(bigX,bigY),end1);
+                    setBigIntTabCell(bigX,bigY,end1);
+                    printIntTab(getBigIntTab());
+                }
                 player_number = 2;
                 break;
             case 2:
@@ -46,20 +55,28 @@ public class GameControler implements MoveInterface {
                 setButtonPressed(getDobryTile(x, y, bigX, bigY));
                 setColorBorder(getDobryPrzycisk(x, y, bigX, bigY), GameColors.RED.name());
 //                int[][]
-                printIntTab(getSmallIntTab(bigX,bigY));
                 setSmallIntTabCell(x,y,bigX,bigY,player_number);
                 printIntTab(getSmallIntTab(bigX,bigY));
-//                test for bigIntTab
+                int end2 = state.resultIntTab(getSmallIntTab(bigX,bigY));
+                System.out.println("result: " + end2);
+                if (end2!=0) {
+                    setTileBord(getGoodTileTab(bigX,bigY),end2);
+                    setBigIntTabCell(bigX,bigY,end2);
+                    printIntTab(getBigIntTab());
+                }
                 player_number = 1;
                 break;
         }
-//        this.mainBoard.getMainBoardTab()[bigX][bigY].getTileBoard()[x][y].getButton().setIcon(Const.BASIC2);
-
 
         System.out.println("gameContorler says: moved");
     }
 
     //SUPPORT METHODS
+
+
+    public Tile[][] getGoodTileTab(int bigX, int bigY){
+        return this.mainBoard.getMainBoardTab()[bigX][bigY].getTileBoard();
+    }
     public JButton getDobryPrzycisk(int x, int y, int bigX, int bigY) {
         return this.mainBoard.getMainBoardTab()[bigX][bigY].getTileBoard()[x][y].getButton();
     }
@@ -100,6 +117,49 @@ public class GameControler implements MoveInterface {
 
 //    switchActiveButton()
 //    WINLOSECONDIDONS METHODS
+public void setTileBord(Tile[][] tab, int player_number) {
+//        ANIMACJA!!!!!
+    int delay = 500;
+    Timer timer = new Timer(delay, null);
+    timer.addActionListener(new ActionListener() {
+        int k = tab.length - 1;
+        int l = 0;
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (k >= 0) {
+                setButtonPressed(tab[l][k]);
+                if (player_number == 1) {
+                    setColorBorder(tab[l][k].getButton(), GameColors.BLUE.name());
+                    tab[l][k].getButton().setIcon(Const.GRACZ1);
+                } else if (player_number == 2) {
+                    setColorBorder(tab[l][k].getButton(), GameColors.RED.name());
+                    tab[l][k].getButton().setIcon(Const.GRACZ2);
+                } else {
+                    setColorBorder(tab[l][k].getButton(), GameColors.GRAY.name());
+                    tab[l][k].getButton().setIcon(Const.BASIC2);
+                }
+                l++;
+                if (l >= tab[k].length) {
+                    l = 0;
+                    k--;
+                }
+                if (k < 0) {
+                    timer.stop();
+                }
+            }
+        }
+    });
+//        TU CISNIEMY Z WĄTKIEM DLA INSTANCJI TIMERA
+    SwingUtilities.invokeLater(new Runnable() {
+        @Override
+        public void run() {
+            timer.setInitialDelay(100);
+            timer.start();
+        }
+    });
+//        timer.setInitialDelay(100);
+//        timer.start();
+}
 public void setColorBorder (JButton button, String COLOR) {
     Color borderColor;
 
