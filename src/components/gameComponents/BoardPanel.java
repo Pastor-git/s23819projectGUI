@@ -61,7 +61,7 @@ public class BoardPanel extends JPanel{
         int[][] tab = new int[3][3];
         for (int[] element : tab) {
             for (int k = 0; k < element.length; k++) {
-                element[k] = 1;
+                element[k] = 0;
             }
         }
         board.setIntBoard(tab);
