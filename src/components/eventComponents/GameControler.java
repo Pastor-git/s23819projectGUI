@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameControler implements MoveInterface {
-    //    GABINET CIENI ROZGRYFKI - BACKEND ODPOWADAJACY ZA SPRAWDZANIE WSZSYKICH CZYNNIKÓW GRY NA PODSTAWIE STATE I INNYCH KOMPONENTÓ
+    //    GABINET CIENI ROZGRYWKI - BACKEND ODPOWADAJACY ZA SPRAWDZANIE WSZSYKICH CZYNNIKÓW GRY NA PODSTAWIE STATE I INNYCH KOMPONENTÓ
     State state;
     MainBoard mainBoard;
     int player_number = state.getPlayer_turn();
@@ -25,6 +25,7 @@ public class GameControler implements MoveInterface {
     public GameControler(State state, MainBoard mainBoard) {
         this.state = state;
         this.mainBoard = mainBoard;
+        state.gameLunch();
 //        LOADSAVEGAME CLASS
 //        STATE SET-UP
 //        BOARDS UP-DATE
@@ -37,7 +38,7 @@ public class GameControler implements MoveInterface {
             case 1:
                 getDobryPrzycisk(x, y, bigX, bigY).setIcon(Const.GRACZ1);
                 setButtonPressed(getDobryTile(x, y, bigX, bigY));
-                setColorBorder(getDobryPrzycisk(x, y, bigX, bigY), GameColors.BLUE.name());
+//                setColorBorder(getDobryPrzycisk(x, y, bigX, bigY), GameColors.BLUE.name());
 //                  int[][]
                 setSmallIntTabCell(x,y,bigX,bigY,player_number);
                 printIntTab(getSmallIntTab(bigX,bigY));
@@ -53,7 +54,7 @@ public class GameControler implements MoveInterface {
             case 2:
                 getDobryPrzycisk(x, y, bigX, bigY).setIcon(Const.GRACZ2);
                 setButtonPressed(getDobryTile(x, y, bigX, bigY));
-                setColorBorder(getDobryPrzycisk(x, y, bigX, bigY), GameColors.RED.name());
+//                setColorBorder(getDobryPrzycisk(x, y, bigX, bigY), GameColors.RED.name());
 //                int[][]
                 setSmallIntTabCell(x,y,bigX,bigY,player_number);
                 printIntTab(getSmallIntTab(bigX,bigY));

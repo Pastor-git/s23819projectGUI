@@ -16,7 +16,7 @@ public class BoardPanel extends JPanel{
 //        BUILD-UP
         this.setVisible(true);
         this.setSize(400,600);
-        this.setBackground(Color.GREEN);
+        this.setBackground(Color.WHITE);
         this.setLayout(new GridLayout(3, 3));
         setBoard(new Board());
 //        INTY ZAWSZE PIERWSZE

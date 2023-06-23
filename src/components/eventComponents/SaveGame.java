@@ -33,12 +33,7 @@ public class SaveGame {
             case "SAVE":
                 break;
             default:
-
-
                 System.out.println("SAVEGAME nie działa poprawnie");
-
-
-
         }
     }
 //    METHODS

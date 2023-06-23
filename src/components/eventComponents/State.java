@@ -1,5 +1,7 @@
 package components.eventComponents;
 
+import components.Const;
+
 public class State {
 
     public static int player_turn;
@@ -9,12 +11,28 @@ public class State {
     String result;
     boolean endGame = false;
     int gameResult = 0;
-
+    String gameLabel;
+    SaveGame saveGame;
     public State(String label){
         System.out.println("State zainicjaizowany");
         player_turn = 1;
-        System.out.println("State speaks: " + label);
+        this.gameLabel = label;
     };
+    public void gameLunch() {
+        switch(this.gameLabel) {
+            case "START":
+                break;
+            case "LOAD":
+                break;
+            case "TEST":
+                break;
+            default:
+                break;
+        }
+    }
+    public void gameUpLoad(int[][] tab) {
+
+    }
 //    STATYCZNE WARTOŚCI DLA ROZGRYKI WCZYTUJĄCE USTAWIENIA Z SAVE GAME LUB INICJOWANE DOMYŚLNYMI
 //    Warunki zwycięstwa tutaj sprawdzajmy możę?
 
@@ -39,34 +57,38 @@ public class State {
     public int didPlayerWinDiagonal(int[][] tab) {
         int win_number = 0;
 
-            if ((tab[0][0]==tab[1][1])&&(tab[0][0]==tab[2][2])) {
-                win_number = tab[0][0];
-            } else if ((tab[2][0]==tab[1][1])&&(tab[2][0]==tab[0][2])) {
-                win_number = tab[2][0];
-            } else {
-                System.out.println("diagonal: brak wygranej");
-            }
+        if ((tab[0][0] != 0) && (tab[0][0] == tab[1][1]) && (tab[0][0] == tab[2][2])) {
+            win_number = tab[0][0];
+        } else if ((tab[2][0] != 0) && (tab[2][0] == tab[1][1]) && (tab[2][0] == tab[0][2])) {
+            win_number = tab[2][0];
+        } else {
+            System.out.println("diagonal: brak wygranej");
+        }
 
         return win_number;
     }
+
     public int didPlayerWinRows(int[][] tab) {
         int win_number = 0;
-        for(int i = 0; i <3; i++) {
-            if ((tab[i][0]==tab[i][1])&&(tab[i][0]==tab[i][2])) {
+        for (int i = 0; i < 3; i++) {
+            if ((tab[i][0] != 0) && (tab[i][0] == tab[i][1]) && (tab[i][0] == tab[i][2])) {
                 win_number = tab[i][0];
+                break;
             } else {
-                System.out.println("wiersz " + i + "brak wygranej");
+                System.out.println("wiersz " + i + ": brak wygranej");
             }
         }
         return win_number;
     }
+
     public int didPlayerWinColumns(int[][] tab) {
         int win_number = 0;
-        for(int i = 0; i <3; i++) {
-            if ((tab[0][i]==tab[1][i])&&(tab[0][i]==tab[2][i])) {
-                win_number = tab[i][0];
+        for (int i = 0; i < 3; i++) {
+            if ((tab[0][i] != 0) && (tab[0][i] == tab[1][i]) && (tab[0][i] == tab[2][i])) {
+                win_number = tab[0][i];
+                break;
             } else {
-                System.out.println("wiersz " + i + "brak wygranej");
+                System.out.println("kolumna " + i + ": brak wygranej");
             }
         }
         return win_number;
@@ -75,13 +97,15 @@ public class State {
 
     public int isDrawGame(int[][] tab) {
         int draw = 0;
-        boolean fullTab = false;
-        for(int i = tab.length-1; i >=0; i--) {
-            for(int j = tab.length; j < 3; j++){
-                if(tab[j][i]==0) {
-                    draw = 3;
-                }
-            }
+        boolean fullTab = true;
+        for (int i = 0; i < tab.length; i++) {
+        for (int j = 0; j < tab[i].length; j++) {
+             if (tab[i][j] == 0) {
+             fullTab = false;
+             break;
+        }}}
+        if (fullTab) {
+            draw = 3;
         }
         return draw;
     }
