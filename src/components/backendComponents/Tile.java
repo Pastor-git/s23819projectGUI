@@ -24,6 +24,7 @@ public class Tile implements ActionListener {
         this.pressed = false;
         this.active = true;
         button.addActionListener(this);
+        button.setBorder(null);
         this.button = button;
         this.x = x;
         this.y = y;

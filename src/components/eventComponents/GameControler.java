@@ -29,8 +29,6 @@ public class GameControler implements MoveInterface {
     public static int bigY =0;
     int gameResult = 0;
     public GameControler() {
-//        state.gameLunch();
-//
     }
     public GameControler(State state, MainBoard mainBoard) {
         this.state = state;
@@ -50,27 +48,52 @@ public class GameControler implements MoveInterface {
     //    METHODS GAMEPLAY
 //TICTACTOE STYLE
     public void TicTacToaStyleMove() {
-        int bigX=this.bigX;
-        int bigY=this.bigY;
         MainBoard boardTTT = getMainBoard();
-        if(boardTTT.getMainIntBoard()[bigX][bigY]!=0){
-            System.out.println("plansza (X,Y): (" + bigX + "," + bigY + ") ma wartość: " + boardTTT.getMainIntBoard()[bigX][bigY]);
+        if(boardTTT.getMainIntBoard()[this.bigX][this.bigY]!=0){
+            resetMainBoard();
+            System.out.println("plansza (X,Y): (" + this.bigX + "," + this.bigY + ") ma wartość: " + boardTTT.getMainIntBoard()[this.bigX][this.bigY]);
         } else {
             Board temBoard = getDobraBoardTablica(this.bigX, this.bigY);
-            setColorInTileBoarder(temBoard.getTileBoard() ,temBoard.getIntBoard(), GameColors.YELLOW);
-
+            resetMainBoardToFalse();
+            if(endGame==false) {
+                setColorInTileBoarder(temBoard.getTileBoard(), temBoard.getIntBoard(), GameColors.YELLOW);
+            }
         }
     }
     public Board getDobraBoardTablica(int bigX, int bigY) {
         Board board = mainBoard.getMainBoardTab()[bigX][bigY];
         return board;
     }
+    public void resetMainBoard() {
+        for (int i = 2; i>= 0;i--) {
+            for (int j = 0; j< 3; j++) {
+                resetBorderTileBoard(getDobraBoardTablica(j,i).getTileBoard(),getDobraBoardTablica(j,i).getIntBoard());
+            }
+        }
+    }
+    public void resetMainBoardToFalse() {
+        for (int i = 2; i>= 0;i--) {
+            for (int j = 0; j< 3; j++) {
+                setAllFalse(getDobraBoardTablica(j,i).getTileBoard(),getDobraBoardTablica(j,i).getIntBoard());
+            }
+        }
+    }
+    public void setAllFalse(Tile[][] tab, int[][]intTab) {
+        for (int i = 2; i>= 0;i--) {
+            for (int j = 0; j< 3; j++) {
+                if(intTab[j][i]==0) {
+                    tab[j][i].setActive(false);
+                    resetColorBorder(tab[j][i].getButton());
+                }
+            }
+        }
+    }
     public void resetBorderTileBoard(Tile[][] tab, int[][]intTab) {
         for (int i = 2; i>= 0;i--) {
             for (int j = 0; j< 3; j++) {
                 if(intTab[j][i]==0) {
                     resetColorBorder(tab[j][i].getButton());
-                    tab[j][i].setActive(false);
+                    tab[j][i].setActive(true);
                 }
             }
         }
@@ -81,7 +104,7 @@ public class GameControler implements MoveInterface {
         for (int i = 2; i>= 0;i--) {
             for (int j = 0; j< 3; j++) {
                 if(intTab[j][i]==0) {
-                    setColorBorder(tileTab[i][j].getButton(), vale);
+                    setColorBorder(tileTab[j][i].getButton(), vale);
                     tileTab[j][i].setActive(true);
                 }
             }
@@ -105,14 +128,15 @@ public class GameControler implements MoveInterface {
             case 1:
                 getDobryPrzycisk(x, y, bigX, bigY).setIcon(Const.GRACZ1);
                 setButtonPressed(getDobryTile(x, y, bigX, bigY));
-//                setColorBorder(getDobryPrzycisk(x, y, bigX, bigY), GameColors.BLUE.name());
-//                  int[][]
+                resetColorBorder(getDobryPrzycisk(x, y, bigX, bigY));
+//                  int[][] section
                 setSmallIntTabCell(x,y,bigX,bigY,player_number);
                 printIntTab(getSmallIntTab(bigX,bigY));
                 int end1 = state.resultIntTab(getSmallIntTab(bigX,bigY));
                 System.out.println("move result: " + end1);
                 if (end1!=0) {
                     setTileBord(getGoodTileTab(bigX,bigY),end1);
+                    setIntTab(getDobraBoardTablica(bigX,bigY).getIntBoard(),end1);
                     setBigIntTabCell(bigX,bigY,end1);
                     printIntTab(getBigIntTab());
                 }
@@ -125,14 +149,15 @@ public class GameControler implements MoveInterface {
             case 2:
                 getDobryPrzycisk(x, y, bigX, bigY).setIcon(Const.GRACZ2);
                 setButtonPressed(getDobryTile(x, y, bigX, bigY));
-//                setColorBorder(getDobryPrzycisk(x, y, bigX, bigY), GameColors.RED.name());
-//                int[][]
+                resetColorBorder(getDobryPrzycisk(x, y, bigX, bigY));
+//                int[][] section
                 setSmallIntTabCell(x,y,bigX,bigY,player_number);
                 printIntTab(getSmallIntTab(bigX,bigY));
                 int end2 = state.resultIntTab(getSmallIntTab(bigX,bigY));
                 System.out.println("result: " + end2);
                 if (end2!=0) {
                     setTileBord(getGoodTileTab(bigX,bigY),end2);
+                    setIntTab(getDobraBoardTablica(bigX,bigY).getIntBoard(),end2);
                     setBigIntTabCell(bigX,bigY,end2);
                     printIntTab(getBigIntTab());
                 }
@@ -148,6 +173,16 @@ public class GameControler implements MoveInterface {
     }
 
     //SUPPORT METHODS
+
+    public void setIntTab(int[][] tab, int value) {
+        for (int i = 2; i>= 0;i--) {
+            for (int j = 0; j < 3; j++) {
+                if (tab[j][i] == 0) {
+                    tab[j][i]=value;
+                }
+            }
+        }
+    }
     public void endGame(){
         if(finalResult()!=0) {
             endGame=true;
@@ -291,6 +326,7 @@ public void setColorBorder (JButton button, GameColors value) {
 //KASOWANIE RAMKI
     public static void resetColorBorder(JButton button) {
         button.setBorder(null);
+//        button.setBorder(BorderFactory.createEtchedBorder());
     }
 //    TEST METHODS
 public void testPrint(int x, int y, int bigX, int bigY) {
