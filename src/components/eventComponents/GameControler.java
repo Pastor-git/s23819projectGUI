@@ -106,7 +106,7 @@ public class GameControler implements MoveInterface {
                                 mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setActive(false);
                                 mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setPressed(true);
                             } else {
-
+//                                System.out.println("nic na tym polu nie ma!");
                             }
                     }
                 }

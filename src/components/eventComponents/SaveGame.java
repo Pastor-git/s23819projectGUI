@@ -58,35 +58,36 @@ public class SaveGame {
         player_turn = intTab[0];
         bigX = intTab[1];
         bigY = intTab[2];
-        int[][]temp = new int[3][3];
         int number = 3;
         this.shadowMainBoard.setMainIntBoard(new int[3][3]);
         for (int i =0;i<3;i++) {
             for(int j =0; j<3;j++) {
-                temp[i][j]=intTab[number];
+                shadowMainBoard.getMainIntBoard()[i][j]=intTab[number];
                 number++;
             }
         }
-        this.shadowMainBoard.setMainIntBoard(temp);
+
         this.shadowMainBoard.setMainBoardTab(new Board[3][3]);
         for (int i =0;i<3;i++) {
             for(int j =0; j<3;j++) {
                 shadowMainBoard.getMainBoardTab()[i][j]=new Board();
             }
         }
+        System.out.println();
         for (int i =0;i<3;i++) {
             for(int j =0; j<3;j++) {
-                shadowMainBoard.getMainBoardTab()[i][j].setIntBoard(temp);
+                shadowMainBoard.getMainBoardTab()[i][j].setIntBoard(new int[3][3]);
                 for (int a =0;a<3;a++) {
                     for(int b =0; b<3;b++) {
-                        shadowMainBoard.getMainBoardTab()[i][j].setIntBoard(new int[3][3]);
                         shadowMainBoard.getMainBoardTab()[i][j].getIntBoard()[a][b]=intTab[number];
+                        System.out.print(intTab[number]);
                         number++;
                     }
                 }
             }
         }
         System.out.println("numebr: " + number);
+        System.out.println("save game nasze pole: " + shadowMainBoard.getMainBoardTab()[1][1].getIntBoard()[1][1]);
 
     }
     public void loadTXTSaveGametoInt() throws IOException {
@@ -94,11 +95,10 @@ public class SaveGame {
         String s = bufferedReader.readLine();
         System.out.println(s);
         char[] charTab = s.toCharArray();
-        int[] intTab = new int[charTab.length];
+        this.intTab  = new int[charTab.length];
         for (int i = 0; i < charTab.length; i++) {
             intTab[i] = Character.getNumericValue(charTab[i]);
         }
-        this.intTab = intTab;
 //        TEST
         for (int i : this.intTab) {
             System.out.print(i);

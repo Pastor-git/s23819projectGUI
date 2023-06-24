@@ -47,6 +47,12 @@ public class State {
         this.bigX = loadGame.bigX;
         this.bigY = loadGame.bigY;
         this.shadowMainBoard = loadGame.shadowMainBoard;
+        for (int i =0;i<3;i++) {
+            for(int j =0; j<3;j++) {
+                shadowMainBoard.getMainBoardTab()[i][j].setIntBoard(loadGame.shadowMainBoard.getMainBoardTab()[i][j].getIntBoard());
+            }
+        }
+        System.out.println("State nasze pole: " + shadowMainBoard.getMainBoardTab()[1][1].getIntBoard()[1][1]);
     }
 //    WIN/LOSE CONDIDITIONS METODS
     public int resultIntTab(int[][] tab) {
