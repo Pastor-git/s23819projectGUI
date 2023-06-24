@@ -1,5 +1,8 @@
 package components.sideComponents;
 
+import components.backendComponents.MainBoard;
+import components.eventComponents.GameControler;
+import components.eventComponents.State;
 import components.gameComponents.MainFrame;
 import enums.MenuButtonPressed;
 
@@ -9,13 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WelcomeMenu extends JFrame implements ActionListener {
-//    USTAWIĆ WĄTEK JAKO ZMIENNĄ - KAŻA METODA PODMIENIA WĄTEK ZAMIAST TWORZYĆ NOWEGO
-
-    public WelcomeMenu(String s) {
+    GameControler gameControler;
+    public WelcomeMenu(String label) {
 //      PARAMETERS
         this.getContentPane().setBackground(Color.DARK_GRAY);
         this.setSize(80,260);
-        this.setLocation(40,500);
+        this.setLocation(680,320);
         this.setLayout(new GridLayout(5, 1));
 //        BUTTONS
         JButton start = new JButton(MenuButtonPressed.START.name());
@@ -41,6 +43,9 @@ public class WelcomeMenu extends JFrame implements ActionListener {
         this.add(close);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+//        GAME CONTROL
+        GameControler gameControler = new GameControler(new State(label),new MainBoard());
+        this.gameControler = gameControler;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -72,7 +77,7 @@ public class WelcomeMenu extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainFrame mainFrame = new MainFrame(action_title);}
+                MainFrame mainFrame = new MainFrame(action_title, gameControler);}
         });
     }
 
@@ -80,21 +85,24 @@ public class WelcomeMenu extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainFrame mainFrame = new MainFrame(action_title);}
+                MainFrame mainFrame = new MainFrame(action_title, gameControler);}
         });
     }
 
     public void testGame(String action_title){
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainFrame mainFrame = new MainFrame(action_title);}
+                MainFrame mainFrame = new MainFrame(action_title,gameControler);
+                }
         });
     }
     public void saveGame(String action_title){
-        System.out.println("SAVE game clicked");
+        System.out.println("SAVE game clicked" + " player start: " + gameControler.getPlayer_number());
     }
     public void closeGame(String action_title){
+
         System.out.println("CLOSE game clicked");
     }
 

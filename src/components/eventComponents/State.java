@@ -14,9 +14,9 @@ public class State {
     String gameLabel;
     SaveGame saveGame;
     public State(String label){
-        System.out.println("State zainicjaizowany");
-        player_turn = 1;
         this.gameLabel = label;
+        System.out.println("State zainicjaizowany" + " label: " + label);
+        this.gameLunch();
     };
     public void gameLunch() {
         switch(this.gameLabel) {
@@ -29,6 +29,7 @@ public class State {
             default:
                 break;
         }
+        System.out.println("game lunch");
     }
     public void gameUpLoad(int[][] tab) {
 

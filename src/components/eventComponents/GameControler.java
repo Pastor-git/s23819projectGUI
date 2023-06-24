@@ -18,14 +18,16 @@ public class GameControler implements MoveInterface {
     //    GABINET CIENI ROZGRYWKI - BACKEND ODPOWADAJACY ZA SPRAWDZANIE WSZSYKICH CZYNNIKÓW GRY NA PODSTAWIE STATE I INNYCH KOMPONENTÓ
     State state;
     MainBoard mainBoard;
-    int player_number = state.getPlayer_turn();
+    int player_number = 1;
     boolean endGame = false;
     int gameResult = 0;
-
+    public GameControler() {
+        state.gameLunch();
+    }
     public GameControler(State state, MainBoard mainBoard) {
         this.state = state;
         this.mainBoard = mainBoard;
-        state.gameLunch();
+//        state.gameLunch();
 //        LOADSAVEGAME CLASS
 //        STATE SET-UP
 //        BOARDS UP-DATE

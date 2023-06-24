@@ -14,7 +14,7 @@ public class MainPanel extends JPanel implements ActionListener {
 //    TU SIE DZIEJE MAGIA: KOSTRUKTR gameControler BĘDIZA MIAŁ WSTRZYKNIĄTEĄ mainBoard z MainPanel
     MainBoard mainBoard;
     GameControler gameControler;
-   public MainPanel(String label) {
+   public MainPanel(String label, GameControler gameControler) {
 //        BUILD-UP
         this.setSize(400,800);
         this.setBackground(Color.CYAN);
@@ -27,7 +27,11 @@ public class MainPanel extends JPanel implements ActionListener {
        this.buildMainIntBoard(this.mainBoard);
 //        BUILD-UP
        this.setVisible(true);
-       this.gameControler = new GameControler(new State(label), this.mainBoard);
+       this.gameControler = gameControler;
+       gameControler.setMainBoard(mainBoard);
+       gameControler.setState(new State(label));
+//       trzeba znaleźć dobre miejsce na state.gameLunch()
+//         this.gameControler = new GameControler(new State(label), this.mainBoard);
         for(int i = 3-1; i >=0 ; i--) {
            for(int j = 0; j < 3; j++) {
                BoardPanel panel = new BoardPanel();
