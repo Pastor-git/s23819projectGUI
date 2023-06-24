@@ -10,8 +10,8 @@ public class SaveGame {
     int bigY;
     int[][] tab;
     MainBoard shadowMainBoard;
-    final String savePath = ("./src/save/save.txt");
-    final FileWriter fileWriter = new FileWriter(savePath);
+    String savePath = ("./src/save/save.txt");
+    FileWriter fileWriter;
     public SaveGame(MainBoard shadowMainBoard, int bigX, int bigY, int player_turn) throws IOException {
         this.shadowMainBoard = shadowMainBoard;
         this.bigX = bigX;
@@ -21,9 +21,12 @@ public class SaveGame {
 
 //    METHODS
     public void saveGameToTXT() throws IOException {
-        fileWriter.write(this.player_turn);
-        fileWriter.write(this.bigX);
-        fileWriter.write(this.bigY);
+        FileWriter fileWriter = new FileWriter("./src/save/save.txt");
+        String s = "";
+        s = s+this.player_turn+this.bigX+this.bigY;
+        System.out.println("save game: " + s);
+        fileWriter.write(s);
+        fileWriter.close();
     }
 
 

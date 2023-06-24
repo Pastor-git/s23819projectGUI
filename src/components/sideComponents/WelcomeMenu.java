@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class WelcomeMenu extends JFrame implements ActionListener {
     GameControler gameControler;
@@ -63,7 +64,11 @@ public class WelcomeMenu extends JFrame implements ActionListener {
                 this.testGame(action_title);
                 break;
             case "SAVE":
-                this.saveGame(action_title);
+                try {
+                    this.saveGame(action_title);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 break;
             case "CLOSE":
                 this.closeGame(action_title);
@@ -114,9 +119,9 @@ public class WelcomeMenu extends JFrame implements ActionListener {
         });
     }
 
-    public void saveGame(String action_title){
+    public void saveGame(String action_title) throws IOException {
         System.out.println("SAVE game clicked" + " player start: " + gameControler.getPlayer_number());
-        gameControler.stateGameLoad();
+        gameControler.saveGame();
     }
     public void closeGame(String action_title){
 

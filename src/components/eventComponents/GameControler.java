@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class GameControler implements MoveInterface {
     //    GABINET CIENI ROZGRYWKI - BACKEND ODPOWADAJACY ZA SPRAWDZANIE WSZSYKICH CZYNNIKÓW GRY NA PODSTAWIE STATE I INNYCH KOMPONENTÓ
@@ -37,8 +38,10 @@ public class GameControler implements MoveInterface {
     }
 
 //    SAVE GAME
-    public void saveGame() {
-
+    public void saveGame() throws IOException {
+        SaveGame saveGame = new SaveGame(this.mainBoard,this.bigX,this.bigY,this.player_number);
+        System.out.println("gameControler Speaks: save game pressed");
+        saveGame.saveGameToTXT();
     }
 //    GAME START
     public void stateGameLoad() {

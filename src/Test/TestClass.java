@@ -20,7 +20,7 @@ public class TestClass {
 //        wczytnaie i zapis pliku
 
         String path1 ="src/Test/test1.txt";
-        String path2 ="src/Test/test2.txt";
+        String path2 ="./src/save/save.txt";
         FileReader read = new FileReader(path1);
         FileWriter write = new FileWriter(path2);
         String s = read.toString();
