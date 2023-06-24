@@ -1,6 +1,8 @@
 package components.eventComponents;
 
 import components.Const;
+import components.backendComponents.Board;
+import components.backendComponents.MainBoard;
 
 public class State {
 
@@ -11,14 +13,16 @@ public class State {
     String result;
     boolean endGame = false;
     int gameResult = 0;
+    Board board;
+    MainBoard mainBoard;
     String gameLabel;
     SaveGame saveGame;
     public State(String label){
         this.gameLabel = label;
         System.out.println("State zainicjaizowany" + " label: " + label);
-        this.gameLunch();
+
     };
-    public void gameLunch() {
+    public MainBoard gameLunch() {
         switch(this.gameLabel) {
             case "START":
                 break;
@@ -29,7 +33,8 @@ public class State {
             default:
                 break;
         }
-        System.out.println("game lunch");
+        System.out.println("state speaks: game lunch");
+        return new MainBoard();
     }
     public void gameUpLoad(int[][] tab) {
 

@@ -56,6 +56,7 @@ public class MainPanel extends JPanel implements ActionListener {
 //        end of loop
 
        System.out.println("MainPanel speaks: " + label);
+       gameControler.stateGameLoad();
     }
 //    END OF CONTRUCTOR
 

@@ -22,7 +22,8 @@ public class GameControler implements MoveInterface {
     boolean endGame = false;
     int gameResult = 0;
     public GameControler() {
-        state.gameLunch();
+//        state.gameLunch();
+//
     }
     public GameControler(State state, MainBoard mainBoard) {
         this.state = state;
@@ -31,6 +32,12 @@ public class GameControler implements MoveInterface {
 //        LOADSAVEGAME CLASS
 //        STATE SET-UP
 //        BOARDS UP-DATE
+    }
+//    GAME START
+    public void stateGameLoad() {
+        state.gameLunch();
+//        state wygenreuje szadowBoards na podstawie saveGame i przekaże do gameCotroler
+        System.out.println("inizalizacja gry z poziomu gameControler");
     }
 
     //    METHODS GAMEPLAY
