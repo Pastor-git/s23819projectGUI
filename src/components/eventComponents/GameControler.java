@@ -33,10 +33,12 @@ public class GameControler implements MoveInterface {
     public GameControler(State state, MainBoard mainBoard) {
         this.state = state;
         this.mainBoard = mainBoard;
-//        state.gameLunch();
-//        LOADSAVEGAME CLASS
-//        STATE SET-UP
-//        BOARDS UP-DATE
+        stateGameLoad();
+    }
+
+//    SAVE GAME
+    public void saveGame() {
+
     }
 //    GAME START
     public void stateGameLoad() {

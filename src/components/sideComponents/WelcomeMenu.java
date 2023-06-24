@@ -116,6 +116,7 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 
     public void saveGame(String action_title){
         System.out.println("SAVE game clicked" + " player start: " + gameControler.getPlayer_number());
+        gameControler.stateGameLoad();
     }
     public void closeGame(String action_title){
 

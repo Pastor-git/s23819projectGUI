@@ -1,60 +1,33 @@
 package components.eventComponents;
 
+import components.backendComponents.MainBoard;
+
 import java.io.*;
-import java.util.Scanner;
 
 public class SaveGame {
-    String action_title;
     int player_turn;
     int bigX;
     int bigY;
     int[][] tab;
-    FileReader file;
-
-    final String startPath = ("./src/save/start.txt");
-    final String loadPath = ("./src/save/save.txt");
-    final String testPath = ("./src/save/test.txt");
+    MainBoard shadowMainBoard;
     final String savePath = ("./src/save/save.txt");
-    final FileWriter saveGame = new FileWriter(savePath);
-
-    public SaveGame(String action_title) throws IOException {
-        this.action_title = action_title;
-
-        switch (action_title) {
-            case "START":
-                this.file = new FileReader(startPath);
-                break;
-            case "LOAD":
-                this.file = new FileReader(loadPath);
-                break;
-            case "TEST":
-                this.file = new FileReader(testPath);
-                break;
-            case "SAVE":
-                break;
-            default:
-                System.out.println("SAVEGAME nie działa poprawnie");
-        }
+    final FileWriter fileWriter = new FileWriter(savePath);
+    public SaveGame(MainBoard shadowMainBoard, int bigX, int bigY, int player_turn) throws IOException {
+        this.shadowMainBoard = shadowMainBoard;
+        this.bigX = bigX;
+        this.bigY = bigY;
+        this.player_turn = player_turn;
     }
+
 //    METHODS
-    public void printGameFile(){
-//        Scanner sc = new Scanner();
-
+    public void saveGameToTXT() throws IOException {
+        fileWriter.write(this.player_turn);
+        fileWriter.write(this.bigX);
+        fileWriter.write(this.bigY);
     }
-
-
 
 
 //    BOILERPLATE
-
-
-    public String getAction_title() {
-        return action_title;
-    }
-
-    public void setAction_title(String action_title) {
-        this.action_title = action_title;
-    }
 
     public int getPlayer_turn() {
         return player_turn;
@@ -88,31 +61,19 @@ public class SaveGame {
         this.tab = tab;
     }
 
-    public String getStartPath() {
-        return startPath;
-    }
-
-    public String getLoadPath() {
-        return loadPath;
-    }
-
-    public String getTestPath() {
-        return testPath;
-    }
-
-    public FileReader getFile() {
-        return file;
-    }
-
-    public void setFile(FileReader file) {
-        this.file = file;
-    }
-
     public String getSavePath() {
         return savePath;
     }
 
-    public FileWriter getSaveGame() {
-        return saveGame;
+    public MainBoard getShadowMainBoard() {
+        return shadowMainBoard;
+    }
+
+    public void setShadowMainBoard(MainBoard shadowMainBoard) {
+        this.shadowMainBoard = shadowMainBoard;
+    }
+
+    public FileWriter getFileWriter() {
+        return fileWriter;
     }
 }

@@ -15,11 +15,9 @@ public class State {
     Board shadowBoard;
     MainBoard shadowMainBoard;
     String gameLabel;
-    SaveGame saveGame;
     public State(String label){
         this.gameLabel = label;
         System.out.println("State zainicjaizowany" + " label: " + label);
-
     };
     public MainBoard gameLunch() {
         switch(this.gameLabel) {
@@ -206,11 +204,4 @@ public class State {
         this.gameLabel = gameLabel;
     }
 
-    public SaveGame getSaveGame() {
-        return saveGame;
-    }
-
-    public void setSaveGame(SaveGame saveGame) {
-        this.saveGame = saveGame;
-    }
 }
