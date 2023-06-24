@@ -33,7 +33,9 @@ public class Tile implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 //        INITIALIZATION CONDIDION
-        if (this.pressed==true) {
+        if(gameControler.isEndGame()==true) {
+            System.out.println("gra już zakończona");
+        } else if (this.pressed==true) {
             System.out.println("przycisk już został wciśnięty:"+this.x+this.y);
         } else { if(this.active==false) {
             System.out.println("przycisk już jest niekatywny:"+this.x+this.y);

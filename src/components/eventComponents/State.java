@@ -1,6 +1,5 @@
 package components.eventComponents;
 
-import components.Const;
 import components.backendComponents.Board;
 import components.backendComponents.MainBoard;
 
@@ -13,8 +12,8 @@ public class State {
     String result;
     boolean endGame = false;
     int gameResult = 0;
-    Board board;
-    MainBoard mainBoard;
+    Board shadowBoard;
+    MainBoard shadowMainBoard;
     String gameLabel;
     SaveGame saveGame;
     public State(String label){
@@ -25,10 +24,15 @@ public class State {
     public MainBoard gameLunch() {
         switch(this.gameLabel) {
             case "START":
+                System.out.println("game lunch: rozpoczęto grę od nowa");
                 break;
             case "LOAD":
+                System.out.println("game lunch: rozpoczęto grę z zapisu");
+//                gameUpLoad(new int[][]);
                 break;
             case "TEST":
+                System.out.println("game lunch: rozpoczęto grę z ustawienia testowego");
+//                gameUpLoad(new int[][]);
                 break;
             default:
                 break;
@@ -159,5 +163,53 @@ public class State {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public boolean isEndGame() {
+        return endGame;
+    }
+
+    public void setEndGame(boolean endGame) {
+        this.endGame = endGame;
+    }
+
+    public int getGameResult() {
+        return gameResult;
+    }
+
+    public void setGameResult(int gameResult) {
+        this.gameResult = gameResult;
+    }
+
+    public Board getShadowBoard() {
+        return shadowBoard;
+    }
+
+    public void setShadowBoard(Board shadowBoard) {
+        this.shadowBoard = shadowBoard;
+    }
+
+    public MainBoard getShadowMainBoard() {
+        return shadowMainBoard;
+    }
+
+    public void setShadowMainBoard(MainBoard shadowMainBoard) {
+        this.shadowMainBoard = shadowMainBoard;
+    }
+
+    public String getGameLabel() {
+        return gameLabel;
+    }
+
+    public void setGameLabel(String gameLabel) {
+        this.gameLabel = gameLabel;
+    }
+
+    public SaveGame getSaveGame() {
+        return saveGame;
+    }
+
+    public void setSaveGame(SaveGame saveGame) {
+        this.saveGame = saveGame;
     }
 }

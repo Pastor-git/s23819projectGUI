@@ -5,6 +5,8 @@ import components.Const;
 import components.backendComponents.Board;
 import components.backendComponents.MainBoard;
 import components.backendComponents.Tile;
+import components.gameComponents.MainFrame;
+import components.sideComponents.EndScreen;
 import components.sideComponents.WelcomeMenu;
 import enums.GameColors;
 
@@ -20,6 +22,8 @@ public class GameControler implements MoveInterface {
     MainBoard mainBoard;
     int player_number = 1;
     boolean endGame = false;
+    public static int bigX;
+    public static int bigY;
     int gameResult = 0;
     public GameControler() {
 //        state.gameLunch();
@@ -58,6 +62,7 @@ public class GameControler implements MoveInterface {
                     setBigIntTabCell(bigX,bigY,end1);
                     printIntTab(getBigIntTab());
                 }
+                endGame();
                 player_number = 2;
                 break;
             case 2:
@@ -74,6 +79,7 @@ public class GameControler implements MoveInterface {
                     setBigIntTabCell(bigX,bigY,end2);
                     printIntTab(getBigIntTab());
                 }
+                endGame();
                 player_number = 1;
                 break;
         }
@@ -82,8 +88,33 @@ public class GameControler implements MoveInterface {
     }
 
     //SUPPORT METHODS
-
-
+    public void endGame(){
+        if(finalResult()!=0) {
+            endGame=true;
+            gameResult = finalResult();
+            //////////////////////////
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    EndScreen endScreen = new EndScreen();}
+            });
+            ///////////////////////////
+        }
+    }
+    public int finalResult() {
+        int result = 0;
+        if((state.resultIntTab(getBigIntTab())==1)) {
+            result = 1;
+        } else if((state.resultIntTab(getBigIntTab())==2)) {
+            result = 2;
+        } else if((state.resultIntTab(getBigIntTab())==3)) {
+            result = 3;
+        } else {
+            result =0;
+        }
+        System.out.println("final resault: " + result);
+        return result;
+    }
     public Tile[][] getGoodTileTab(int bigX, int bigY){
         return this.mainBoard.getMainBoardTab()[bigX][bigY].getTileBoard();
     }
@@ -129,7 +160,7 @@ public class GameControler implements MoveInterface {
 //    WINLOSECONDIDONS METHODS
 public void setTileBord(Tile[][] tab, int player_number) {
 //        ANIMACJA!!!!!
-    int delay = 500;
+    int delay = 20;
     Timer timer = new Timer(delay, null);
     timer.addActionListener(new ActionListener() {
         int k = tab.length - 1;
@@ -163,7 +194,7 @@ public void setTileBord(Tile[][] tab, int player_number) {
     SwingUtilities.invokeLater(new Runnable() {
         @Override
         public void run() {
-            timer.setInitialDelay(100);
+            timer.setInitialDelay(40);
             timer.start();
         }
     });
@@ -246,5 +277,37 @@ public void printIntTab(int[][] tab){
 
     public void setPlayer_number(int player_number) {
         this.player_number = player_number;
+    }
+
+    public boolean isEndGame() {
+        return endGame;
+    }
+
+    public void setEndGame(boolean endGame) {
+        this.endGame = endGame;
+    }
+
+    public int getGameResult() {
+        return gameResult;
+    }
+
+    public void setGameResult(int gameResult) {
+        this.gameResult = gameResult;
+    }
+
+    public static int getBigX() {
+        return bigX;
+    }
+
+    public static void setBigX(int bigX) {
+        GameControler.bigX = bigX;
+    }
+
+    public static int getBigY() {
+        return bigY;
+    }
+
+    public static void setBigY(int bigY) {
+        GameControler.bigY = bigY;
     }
 }
