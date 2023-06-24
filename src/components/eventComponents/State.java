@@ -26,7 +26,8 @@ public class State {
                 break;
             case "LOAD":
                 System.out.println("game lunch: rozpoczęto grę z zapisu");
-                loadGame();
+//                loadGame();
+//                get mainBaord X Y and player Tyrn
                 break;
             case "TEST":
                 System.out.println("game lunch: rozpoczęto grę z ustawienia testowego");
@@ -40,7 +41,7 @@ public class State {
     }
 
     public void loadGame(){
-
+//        SaveGame save game();
     }
 //    WIN/LOSE CONDIDITIONS METODS
     public int resultIntTab(int[][] tab) {
