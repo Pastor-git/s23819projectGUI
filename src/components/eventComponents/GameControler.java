@@ -48,10 +48,74 @@ public class GameControler implements MoveInterface {
         state.gameLunch();
         System.out.println("inizalizacja gry z poziomu gameControler" + label);
         if(label.equals("LOAD")) {
-            System.out.println("!!!!!!!!!!!!!!!!!Będę wczytywć grę z saveGame!!!!!!!!!!!!!!!!!!!!!!!1");
+            System.out.println("!Będę wczytywć grę z saveGame!");
+            this.player_number = state.player_turn;
+            this.bigX = state.bigX;
+            this.bigY = state.bigY;
+            this.mainBoard.setMainIntBoard(state.shadowMainBoard.getMainIntBoard());
+            for (int i =0;i<3;i++) {
+                for(int j =0; j<3;j++) {
+                    mainBoard.getMainBoardTab()[i][j].setIntBoard(state.shadowMainBoard.getMainBoardTab()[i][j].getIntBoard());
+                }
+            }
+            resetTiles();
         }
-
     }
+    public void resetTiles() {
+
+        for (int i =0;i<3;i++) {
+            for(int j =0; j<3;j++) {
+                if(mainBoard.getMainIntBoard()[i][j]==3) {
+                    for (int a =0;a<3;a++) {
+                        for(int b =0; b<3;b++) {
+                            setColorBorder(mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].getButton(), GameColors.GRAY);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].getButton().setIcon(Const.BASIC);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setActive(false);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setPressed(true);
+                        }
+                    }
+                }  else if (mainBoard.getMainIntBoard()[i][j]==2) {
+                    for (int a =0;a<3;a++) {
+                        for(int b =0; b<3;b++) {
+                            setColorBorder(mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].getButton(), GameColors.RED);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].getButton().setIcon(Const.GRACZ2);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setActive(false);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setPressed(true);
+                        }
+                    }
+
+                }  else if (mainBoard.getMainIntBoard()[i][j]==1) {
+                    for (int a =0;a<3;a++) {
+                        for(int b =0; b<3;b++) {
+                            setColorBorder(mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].getButton(), GameColors.BLUE);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].getButton().setIcon(Const.GRACZ1);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setActive(false);
+                            mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setPressed(true);
+                        }
+                    }
+
+                } else if (mainBoard.getMainIntBoard()[i][j]==0){
+                    for (int a =0;a<3;a++) {
+                        for(int b =0; b<3;b++) {
+                            if (mainBoard.getMainBoardTab()[i][j].getIntBoard()[a][b]==2) {
+                                mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].getButton().setIcon(Const.GRACZ2);
+                                mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setActive(false);
+                                mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setPressed(true);
+                            } else if (mainBoard.getMainBoardTab()[i][j].getIntBoard()[a][b]==1) {
+                                mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].getButton().setIcon(Const.GRACZ1);
+                                mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setActive(false);
+                                mainBoard.getMainBoardTab()[i][j].getTileBoard()[a][b].setPressed(true);
+                            } else {
+
+                            }
+                    }
+                }
+            }
+        }
+    }
+        TicTacToaStyleMove();
+    }
+
 
     //    METHODS GAMEPLAY
 //TICTACTOE STYLE
