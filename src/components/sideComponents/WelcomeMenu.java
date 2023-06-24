@@ -79,6 +79,11 @@ public class WelcomeMenu extends JFrame implements ActionListener {
             public void run() {
                 MainFrame mainFrame = new MainFrame(action_title, gameControler);}
         });
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                SupportMenu supportMenu = new SupportMenu();}
+        });
     }
 
     public void loadGame(String action_title){
@@ -86,6 +91,11 @@ public class WelcomeMenu extends JFrame implements ActionListener {
             @Override
             public void run() {
                 MainFrame mainFrame = new MainFrame(action_title, gameControler);}
+        });
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                SupportMenu supportMenu = new SupportMenu();}
         });
     }
 
@@ -97,13 +107,20 @@ public class WelcomeMenu extends JFrame implements ActionListener {
                 MainFrame mainFrame = new MainFrame(action_title,gameControler);
                 }
         });
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                SupportMenu supportMenu = new SupportMenu();}
+        });
     }
+
     public void saveGame(String action_title){
         System.out.println("SAVE game clicked" + " player start: " + gameControler.getPlayer_number());
     }
     public void closeGame(String action_title){
 
         System.out.println("CLOSE game clicked");
+        System.exit(0);
     }
 
 }

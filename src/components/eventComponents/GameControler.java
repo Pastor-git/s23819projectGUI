@@ -140,7 +140,7 @@ public class GameControler implements MoveInterface {
                     setBigIntTabCell(bigX,bigY,end1);
                     printIntTab(getBigIntTab());
                 }
-                endGame();
+                endGame(end1);
 //                NEXT MOVE
                 player_number = 2;
                 nextStep(x,y);
@@ -161,7 +161,7 @@ public class GameControler implements MoveInterface {
                     setBigIntTabCell(bigX,bigY,end2);
                     printIntTab(getBigIntTab());
                 }
-                endGame();
+                endGame(end2);
 //                NEXT MOVE
                 player_number = 1;
                 nextStep(x,y);
@@ -183,15 +183,22 @@ public class GameControler implements MoveInterface {
             }
         }
     }
-    public void endGame(){
+    public void endGame(int winner){
         if(finalResult()!=0) {
             endGame=true;
             gameResult = finalResult();
+            String win;
+            if(winner==1) {
+                win="X";
+            }
+            else {
+                win="O";
+            }
             //////////////////////////
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    EndScreen endScreen = new EndScreen();}
+                    EndScreen endScreen = new EndScreen(win);}
             });
             ///////////////////////////
         }

@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
         this.getContentPane().setBackground(Color.DARK_GRAY);
         this.setSize(600,600);
         this.setLocation(800,320);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MainPanel mainPanel = new MainPanel(action_title, gameControler);
         this.add(mainPanel);
         this.setVisible(true);
