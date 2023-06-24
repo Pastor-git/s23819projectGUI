@@ -31,7 +31,7 @@ public class GameControler implements MoveInterface {
     int gameResult = 0;
     public GameControler() {
     }
-    public GameControler(State state, MainBoard mainBoard) {
+    public GameControler(State state, MainBoard mainBoard) throws IOException {
         this.state = state;
         this.mainBoard = mainBoard;
         stateGameLoad();
@@ -44,12 +44,10 @@ public class GameControler implements MoveInterface {
         saveGame.saveGameToTXT();
     }
 //    GAME START
-    public void stateGameLoad() {
+    public void stateGameLoad() throws IOException {
         state.gameLunch();
-//        state wygenreuje szadowBoards na podstawie saveGame i przekaże do gameCotroler
         System.out.println("inizalizacja gry z poziomu gameControler");
-//        metoda zaciągająca ze state manboard, player turn bigX i bigY
-//        metoda przekazująca do TILE board wszstkie stany z uploadowanego beckaendu
+
     }
 
     //    METHODS GAMEPLAY
@@ -201,13 +199,11 @@ public class GameControler implements MoveInterface {
             else {
                 win="O";
             }
-            //////////////////////////
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
                     EndScreen endScreen = new EndScreen(win);}
             });
-            ///////////////////////////
         }
     }
     public int finalResult() {

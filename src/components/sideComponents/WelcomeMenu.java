@@ -13,8 +13,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class WelcomeMenu extends JFrame implements ActionListener {
+    MainFrame mainFrame;
     GameControler gameControler;
-    public WelcomeMenu(String label) {
+    public WelcomeMenu(String label) throws IOException {
 //      PARAMETERS
         this.getContentPane().setBackground(Color.DARK_GRAY);
         this.setSize(80,260);
@@ -82,12 +83,10 @@ public class WelcomeMenu extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainFrame mainFrame = new MainFrame(action_title, gameControler);}
-        });
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                SupportMenu supportMenu = new SupportMenu();}
+                stopGame();
+                MainFrame mainFrame = new MainFrame(action_title, gameControler);
+                setMainFrame(mainFrame);
+            }
         });
     }
 
@@ -95,12 +94,10 @@ public class WelcomeMenu extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainFrame mainFrame = new MainFrame(action_title, gameControler);}
-        });
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                SupportMenu supportMenu = new SupportMenu();}
+                stopGame();
+                MainFrame mainFrame = new MainFrame(action_title, gameControler);
+                setMainFrame(mainFrame);
+            }
         });
     }
 
@@ -108,8 +105,11 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
+
             public void run() {
+                stopGame();
                 MainFrame mainFrame = new MainFrame(action_title,gameControler);
+                setMainFrame(mainFrame);
                 }
         });
         SwingUtilities.invokeLater(new Runnable() {
@@ -129,4 +129,26 @@ public class WelcomeMenu extends JFrame implements ActionListener {
         System.exit(0);
     }
 
+    public MainFrame getMainFrame() {
+        return mainFrame;
+    }
+
+    public void setMainFrame(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
+    }
+
+    public GameControler getGameControler() {
+        return gameControler;
+    }
+
+    public void setGameControler(GameControler gameControler) {
+        this.gameControler = gameControler;
+    }
+    public void stopGame() {
+        if (mainFrame != null) {
+            mainFrame.dispose();
+            mainFrame = null;
+        }
+    }
 }
+

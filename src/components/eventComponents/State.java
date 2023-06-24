@@ -3,31 +3,31 @@ package components.eventComponents;
 import components.backendComponents.Board;
 import components.backendComponents.MainBoard;
 
+import java.io.IOException;
+
 public class State {
 
     public static int player_turn;
     public static int bigX;
     public static int bigY;
+    MainBoard shadowMainBoard;
     public static boolean isGameFinished = false;
     String result;
     boolean endGame = false;
     int gameResult = 0;
-    Board shadowBoard;
-    MainBoard shadowMainBoard;
     String gameLabel;
     public State(String label){
         this.gameLabel = label;
         System.out.println("State zainicjaizowany" + " label: " + label);
     };
-    public MainBoard gameLunch() {
+    public MainBoard gameLunch() throws IOException {
         switch(this.gameLabel) {
             case "START":
                 System.out.println("game lunch: rozpoczęto grę od nowa");
                 break;
             case "LOAD":
                 System.out.println("game lunch: rozpoczęto grę z zapisu");
-//                loadGame();
-//                get mainBaord X Y and player Tyrn
+                loadGame();
                 break;
             case "TEST":
                 System.out.println("game lunch: rozpoczęto grę z ustawienia testowego");
@@ -40,8 +40,13 @@ public class State {
         return new MainBoard();
     }
 
-    public void loadGame(){
-//        SaveGame save game();
+    public void loadGame() throws IOException {
+        SaveGame loadGame = new SaveGame();
+        loadGame.loadGameFromInt();
+        this.player_turn = loadGame.getPlayer_turn();
+        this.bigX = loadGame.bigX;
+        this.bigY = loadGame.bigY;
+        this.shadowMainBoard = loadGame.shadowMainBoard;
     }
 //    WIN/LOSE CONDIDITIONS METODS
     public int resultIntTab(int[][] tab) {
@@ -177,14 +182,6 @@ public class State {
 
     public void setGameResult(int gameResult) {
         this.gameResult = gameResult;
-    }
-
-    public Board getShadowBoard() {
-        return shadowBoard;
-    }
-
-    public void setShadowBoard(Board shadowBoard) {
-        this.shadowBoard = shadowBoard;
     }
 
     public MainBoard getShadowMainBoard() {

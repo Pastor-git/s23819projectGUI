@@ -9,12 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MainPanel extends JPanel implements ActionListener {
 //    TU SIE DZIEJE MAGIA: KOSTRUKTR gameControler BĘDIZA MIAŁ WSTRZYKNIĄTEĄ mainBoard z MainPanel
     MainBoard mainBoard;
     GameControler gameControler;
-   public MainPanel(String label, GameControler gameControler) {
+   public MainPanel(String label, GameControler gameControler) throws IOException {
 //        BUILD-UP
         this.setSize(400,800);
         this.setBackground(Color.CYAN);
