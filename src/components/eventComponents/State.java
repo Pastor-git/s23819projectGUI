@@ -26,11 +26,11 @@ public class State {
                 break;
             case "LOAD":
                 System.out.println("game lunch: rozpoczęto grę z zapisu");
-//                gameUpLoad(new int[][]);
+                loadGame();
                 break;
             case "TEST":
                 System.out.println("game lunch: rozpoczęto grę z ustawienia testowego");
-//                gameUpLoad(new int[][]);
+//                loadGame(); w wersji TEST
                 break;
             default:
                 break;
@@ -38,12 +38,10 @@ public class State {
         System.out.println("state speaks: game lunch");
         return new MainBoard();
     }
-    public void gameUpLoad(int[][] tab) {
+
+    public void loadGame(){
 
     }
-//    STATYCZNE WARTOŚCI DLA ROZGRYKI WCZYTUJĄCE USTAWIENIA Z SAVE GAME LUB INICJOWANE DOMYŚLNYMI
-//    Warunki zwycięstwa tutaj sprawdzajmy możę?
-
 //    WIN/LOSE CONDIDITIONS METODS
     public int resultIntTab(int[][] tab) {
       int result = 0;

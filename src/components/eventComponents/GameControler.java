@@ -48,6 +48,8 @@ public class GameControler implements MoveInterface {
         state.gameLunch();
 //        state wygenreuje szadowBoards na podstawie saveGame i przekaże do gameCotroler
         System.out.println("inizalizacja gry z poziomu gameControler");
+//        metoda zaciągająca ze state manboard, player turn bigX i bigY
+//        metoda przekazująca do TILE board wszstkie stany z uploadowanego beckaendu
     }
 
     //    METHODS GAMEPLAY
