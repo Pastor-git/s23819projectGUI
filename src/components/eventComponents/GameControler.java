@@ -22,8 +22,11 @@ public class GameControler implements MoveInterface {
     MainBoard mainBoard;
     int player_number = 1;
     boolean endGame = false;
-    public static int bigX;
-    public static int bigY;
+
+    public static int x =0;
+    public static int y =0;
+    public static int bigX =0;
+    public static int bigY =0;
     int gameResult = 0;
     public GameControler() {
 //        state.gameLunch();
@@ -45,6 +48,57 @@ public class GameControler implements MoveInterface {
     }
 
     //    METHODS GAMEPLAY
+//TICTACTOE STYLE
+    public void TicTacToaStyleMove() {
+        int bigX=this.bigX;
+        int bigY=this.bigY;
+        MainBoard boardTTT = getMainBoard();
+        if(boardTTT.getMainIntBoard()[bigX][bigY]!=0){
+            System.out.println("plansza (X,Y): (" + bigX + "," + bigY + ") ma wartość: " + boardTTT.getMainIntBoard()[bigX][bigY]);
+        } else {
+            Board temBoard = getDobraBoardTablica(this.bigX, this.bigY);
+            setColorInTileBoarder(temBoard.getTileBoard() ,temBoard.getIntBoard(), GameColors.YELLOW);
+
+        }
+    }
+    public Board getDobraBoardTablica(int bigX, int bigY) {
+        Board board = mainBoard.getMainBoardTab()[bigX][bigY];
+        return board;
+    }
+    public void resetBorderTileBoard(Tile[][] tab, int[][]intTab) {
+        for (int i = 2; i>= 0;i--) {
+            for (int j = 0; j< 3; j++) {
+                if(intTab[j][i]==0) {
+                    resetColorBorder(tab[j][i].getButton());
+                    tab[j][i].setActive(false);
+                }
+            }
+        }
+    }
+
+
+    public void setColorInTileBoarder(Tile[][] tileTab,int[][]intTab, GameColors vale) {
+        for (int i = 2; i>= 0;i--) {
+            for (int j = 0; j< 3; j++) {
+                if(intTab[j][i]==0) {
+                    setColorBorder(tileTab[i][j].getButton(), vale);
+                    tileTab[j][i].setActive(true);
+                }
+            }
+        }
+    }
+
+
+    public void nextStep(int x, int y){
+        setX(this.bigX);
+        setY(this.bigY);
+        setBigX(x);
+        setBigY(y);
+        System.out.println("last move (x,y): (" + this.x + "," + this.y + ")");
+        System.out.println("next move (x,y): (" + this.bigX + "," + this.bigY + ")");
+    }
+//TICTACTOE STYLE
+
 //HERE IS MAIN ACTION!IT'S FINE WITH THAT BUT... ARE YOU GONA MOVE!?
     public void move(int x, int y, int bigX, int bigY) {
         switch (player_number) {
@@ -56,14 +110,17 @@ public class GameControler implements MoveInterface {
                 setSmallIntTabCell(x,y,bigX,bigY,player_number);
                 printIntTab(getSmallIntTab(bigX,bigY));
                 int end1 = state.resultIntTab(getSmallIntTab(bigX,bigY));
-                System.out.println("result: " + end1);
+                System.out.println("move result: " + end1);
                 if (end1!=0) {
                     setTileBord(getGoodTileTab(bigX,bigY),end1);
                     setBigIntTabCell(bigX,bigY,end1);
                     printIntTab(getBigIntTab());
                 }
                 endGame();
+//                NEXT MOVE
                 player_number = 2;
+                nextStep(x,y);
+                TicTacToaStyleMove();
                 break;
             case 2:
                 getDobryPrzycisk(x, y, bigX, bigY).setIcon(Const.GRACZ2);
@@ -80,7 +137,10 @@ public class GameControler implements MoveInterface {
                     printIntTab(getBigIntTab());
                 }
                 endGame();
+//                NEXT MOVE
                 player_number = 1;
+                nextStep(x,y);
+                TicTacToaStyleMove();
                 break;
         }
 
@@ -170,13 +230,13 @@ public void setTileBord(Tile[][] tab, int player_number) {
             if (k >= 0) {
                 setButtonPressed(tab[l][k]);
                 if (player_number == 1) {
-                    setColorBorder(tab[l][k].getButton(), GameColors.BLUE.name());
+                    setColorBorder(tab[l][k].getButton(), GameColors.BLUE);
                     tab[l][k].getButton().setIcon(Const.GRACZ1);
                 } else if (player_number == 2) {
-                    setColorBorder(tab[l][k].getButton(), GameColors.RED.name());
+                    setColorBorder(tab[l][k].getButton(), GameColors.RED);
                     tab[l][k].getButton().setIcon(Const.GRACZ2);
                 } else {
-                    setColorBorder(tab[l][k].getButton(), GameColors.GRAY.name());
+                    setColorBorder(tab[l][k].getButton(), GameColors.GRAY);
                     tab[l][k].getButton().setIcon(Const.BASIC2);
                 }
                 l++;
@@ -201,23 +261,23 @@ public void setTileBord(Tile[][] tab, int player_number) {
 //        timer.setInitialDelay(100);
 //        timer.start();
 }
-public void setColorBorder (JButton button, String COLOR) {
+public void setColorBorder (JButton button, GameColors value) {
     Color borderColor;
 
-    switch (COLOR) {
-        case "RED":
+    switch (value) {
+        case RED:
             borderColor = Color.RED;
             break;
-        case "BLUE":
+        case BLUE:
             borderColor = Color.BLUE;
             break;
-        case "GREEN":
+        case GREEN:
             borderColor = Color.GREEN;
             break;
-        case "GRAY":
+        case GRAY:
             borderColor = Color.GRAY;
             break;
-        case "YELLOW":
+        case YELLOW:
             borderColor = Color.YELLOW;
             break;
         default:
@@ -231,10 +291,6 @@ public void setColorBorder (JButton button, String COLOR) {
 //KASOWANIE RAMKI
     public static void resetColorBorder(JButton button) {
         button.setBorder(null);
-    }
-
-    public void resetBorder(){
-
     }
 //    TEST METHODS
 public void testPrint(int x, int y, int bigX, int bigY) {
@@ -309,5 +365,21 @@ public void printIntTab(int[][] tab){
 
     public static void setBigY(int bigY) {
         GameControler.bigY = bigY;
+    }
+
+    public static int getX() {
+        return x;
+    }
+
+    public static void setX(int x) {
+        GameControler.x = x;
+    }
+
+    public static int getY() {
+        return y;
+    }
+
+    public static void setY(int y) {
+        GameControler.y = y;
     }
 }

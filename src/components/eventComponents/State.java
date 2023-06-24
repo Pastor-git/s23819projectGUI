@@ -60,7 +60,7 @@ public class State {
       } else {
           result = 0;
       }
-        System.out.println("state speaks result: " + result);
+//        System.out.println("state speaks small result: " + result);
         return result;
     }
 
