@@ -4,10 +4,11 @@ import components.eventComponents.GameControler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MainFrame extends JFrame {
     MainPanel mainPanel;
-    public MainFrame(String action_title, GameControler gameControler) {
+    public MainFrame(String action_title, GameControler gameControler) throws IOException {
 
         this.getContentPane().setBackground(Color.DARK_GRAY);
         this.setSize(600,600);

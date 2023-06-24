@@ -84,7 +84,12 @@ public class WelcomeMenu extends JFrame implements ActionListener {
             @Override
             public void run() {
                 stopGame();
-                MainFrame mainFrame = new MainFrame(action_title, gameControler);
+                MainFrame mainFrame = null;
+                try {
+                    mainFrame = new MainFrame(action_title, gameControler);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 setMainFrame(mainFrame);
             }
         });
@@ -95,7 +100,12 @@ public class WelcomeMenu extends JFrame implements ActionListener {
             @Override
             public void run() {
                 stopGame();
-                MainFrame mainFrame = new MainFrame(action_title, gameControler);
+                MainFrame mainFrame = null;
+                try {
+                    mainFrame = new MainFrame(action_title, gameControler);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 setMainFrame(mainFrame);
             }
         });
@@ -108,7 +118,12 @@ public class WelcomeMenu extends JFrame implements ActionListener {
 
             public void run() {
                 stopGame();
-                MainFrame mainFrame = new MainFrame(action_title,gameControler);
+                MainFrame mainFrame = null;
+                try {
+                    mainFrame = new MainFrame(action_title,gameControler);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 setMainFrame(mainFrame);
                 }
         });

@@ -4,6 +4,7 @@ import components.gameComponents.MainFrame;
 import components.sideComponents.WelcomeMenu;
 
 import javax.swing.*;
+import java.io.IOException;
 
 
 public class Main {
@@ -13,7 +14,11 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                WelcomeMenu welcomeMenu = new WelcomeMenu(label);
+                try {
+                    WelcomeMenu welcomeMenu = new WelcomeMenu(label);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
         );

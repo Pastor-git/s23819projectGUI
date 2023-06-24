@@ -34,7 +34,7 @@ public class GameControler implements MoveInterface {
     public GameControler(State state, MainBoard mainBoard) throws IOException {
         this.state = state;
         this.mainBoard = mainBoard;
-        stateGameLoad();
+        stateGameLoad(state.gameLabel);
     }
 
 //    SAVE GAME
@@ -44,9 +44,12 @@ public class GameControler implements MoveInterface {
         saveGame.saveGameToTXT();
     }
 //    GAME START
-    public void stateGameLoad() throws IOException {
+    public void stateGameLoad(String label) throws IOException {
         state.gameLunch();
-        System.out.println("inizalizacja gry z poziomu gameControler");
+        System.out.println("inizalizacja gry z poziomu gameControler" + label);
+        if(label.equals("LOAD")) {
+            System.out.println("!!!!!!!!!!!!!!!!!Będę wczytywć grę z saveGame!!!!!!!!!!!!!!!!!!!!!!!1");
+        }
 
     }
 

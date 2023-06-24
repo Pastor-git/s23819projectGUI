@@ -53,12 +53,14 @@ public class SaveGame {
     }
 
     public void loadGameFromInt() throws IOException {
+        this.shadowMainBoard = new MainBoard();
         loadTXTSaveGametoInt();
         player_turn = intTab[0];
         bigX = intTab[1];
         bigY = intTab[2];
         int[][]temp = new int[3][3];
         int number = 3;
+        this.shadowMainBoard.setMainIntBoard(new int[3][3]);
         for (int i =0;i<3;i++) {
             for(int j =0; j<3;j++) {
                 temp[i][j]=intTab[number];
