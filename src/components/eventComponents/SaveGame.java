@@ -24,6 +24,21 @@ public class SaveGame {
         FileWriter fileWriter = new FileWriter("./src/save/save.txt");
         String s = "";
         s = s+this.player_turn+this.bigX+this.bigY;
+        for (int i =0;i<3;i++) {
+            for(int j =0; j<3;j++) {
+                s=s+shadowMainBoard.getMainIntBoard()[i][j];
+            }
+        }
+        for (int i =0;i<3;i++) {
+            for(int j =0; j<3;j++) {
+                int[][] tab = shadowMainBoard.getMainBoardTab()[i][j].getIntBoard();
+                for (int a =0;a<3;a++) {
+                    for(int b =0; b<3;b++) {
+                        s=s+tab[i][j];
+                    }
+                }
+            }
+        }
         System.out.println("save game: " + s);
         fileWriter.write(s);
         fileWriter.close();
